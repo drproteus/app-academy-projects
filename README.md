@@ -11,10 +11,10 @@ which happened to have archives of many of the repositories that had been delete
 This archives those as well as pointing to submodules for sources that were preserved.
 
 ## The Projects
-* [protophoto](./protophoto/README.md) - Ruby on Rails Flickr clone with EXIF processing and geolocation.
-* [asteroids](./asteroids/README.md) - HTML canvas asteroids game.
-* [babbl](./babbl/README.md) - Node.js websocket chatroom server and client.
-* [snake](./snake/README.md) - HTML snake game.
-* [chess](./chess/README.md) - Ruby chess program.
+* [protophoto](./protophoto) - Ruby on Rails Flickr clone with EXIF processing and geolocation.
+* [asteroids](./asteroids) - HTML canvas asteroids game.
+* [babbl](./babbl) - Node.js websocket chatroom server and client.
+* [snake](./snake) - HTML snake game.
+* [chess](https://github.com/drproteus/chess) - Ruby chess program.
 
 
