@@ -1,0 +1,14 @@
+<li class="album-thumbnail">
+  <div class="item-image">
+    <a href="<%= album_url(album) %>">
+      <% if album.photos.empty? %>
+          <%= image_tag "thumb/missing.png", class: "img-thumbnail" %>
+        <% else %>
+          <%= image_tag album.photos.first.image.url(:thumb), class: "img-thumbnail" %>
+      <% end %>
+    </a>
+  </div>
+  <div class="album-thumbnail-title">
+    <%= link_to album.title, album_url(album) %>
+  </div>
+</li>

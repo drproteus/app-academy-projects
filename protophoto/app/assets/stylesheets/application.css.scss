@@ -1,0 +1,156 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap.min";
+body {
+  position: relative;
+}
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.jumbotron {
+  text-align: center;
+}
+.logo {
+  font-family: 'Lobster';
+  font-weight: bold;
+  /*letter-spacing: 5px;*/
+}
+.navbar-brand {
+  /*letter-spacing: 5px;*/
+  font-family: 'Lobster';
+  font-weight: bold;
+}
+.photo-thumb {
+  text-align: center;
+}
+ul.album-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.album-list li {
+  float: left;
+  margin: 10px;
+  text-align: center;
+}
+.large-photo .photo-title {
+  text-align: center;
+}
+.photo-description {
+  text-align: left;
+}
+.album-description {
+  margin: 10px 0;
+}
+.large-photo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#map {
+  width: 100%;
+  height: 200px;
+  margin: 10px 0;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+}
+#likers {
+  margin-bottom: 10px;
+}
+#tile {
+  float: right;
+}
+ul.tag-list {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+.tag-list li {
+  float: left;
+  margin: 0 15px;
+  position: relative;
+  padding: 3px;
+}
+.tag-list li .delete-tag {
+  position: absolute;
+  top: 0;
+  right: -20px;
+}
+.message-body, .photo-owner, .tags {
+  padding: 10px;
+  margin: 10px 0;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  word-wrap: break-word;
+}
+ul.messages {
+  list-style-type: square;
+}
+ul.tags {
+  list-style-type: square;
+}
+.album-candidate {
+  float: left;
+  word-wrap: break-word;
+  width: 140px;
+}
+.user-index-figure {
+  word-wrap: break-word;
+  text-align: center;
+  margin: auto;
+}
+#delete-self {
+  margin: 20px 0;
+}
+.photo-list {
+  margin: 10px 0;
+}
+#big-map {
+  width: 100%;
+}
+.fading {
+  transition: opacity 2s ease;
+  opacity: 0.0;
+}
+.posted-comment {
+  transition: box-shadow 1s ease;
+  box-shadow: 0 0 0.5em #5cb85c;
+}
+.comment-body {
+  padding: 10px 0;
+  margin-top: 5px;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+main {
+  margin-bottom: 20px;
+}
+footer {
+  /*margin-top: 20px;*/
+  height: 50px;
+  padding: 5px 30px;
+  width: 100%;
+  bottom: 0;
+}
+footer .about {
+  float: right;
+}
+.demo-login {
+  margin-top: 2px;
+}

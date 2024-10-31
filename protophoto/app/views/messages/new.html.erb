@@ -1,0 +1,23 @@
+<h3>Message to <%= @recipient.email %></h3>
+<div class="well col-md-8">
+  <form role="form" action="<%= messages_url %>" method="POST">
+    <input type="hidden" name="authenticity_token"
+                         value="<%= form_authenticity_token %>">
+    <input type="hidden" name="message[to_id]" value="<%= @recipient.id %>">
+
+    <label for="message_subject">Subject:</label>
+    <div class="form-group">
+      <input type="text" id="message_subject" name="message[subject]"
+             value="<%= @response_subject %>"
+             class="form-control">
+    </div>
+
+    <label for="message_body">Body:</label>
+    <div class="form-group">
+      <textarea id="message_body" name="message[body]"
+                class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary">Send</button>
+  </form>
+</div>

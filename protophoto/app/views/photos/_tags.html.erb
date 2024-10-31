@@ -1,0 +1,83 @@
+<div class="tags">
+  <% unless photo.taggings.empty? %>
+    <strong>Tags: </strong>
+    <ul class="tag-list group">
+    <% photo.taggings.each do |tagging| %>
+      <li id="<%= tagging.id %>"><% if current_user == photo.owner %>
+          <div class="delete-tag"><%= button_to "x", tagging_url(tagging), method: :delete, class: "btn btn-xs btn-default delete-tag-button", id: tagging.id %></div>
+      <% end %>
+      <%= link_to tagging.tag.name, tag_url(tagging.tag) %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  <% if current_user == photo.owner %>
+      <form action="<%= taggings_url %>" method="POST" id="tag-form">
+        <input type="hidden" name="authenticity_token"
+               value="<%= form_authenticity_token %>">
+
+        <input type="hidden" id="tagging_photo_id"
+               name="tagging[photo_id]" value="<%= @photo.id %>">
+
+        <input type="text" id="tagging_tags"
+               name="tagging[tags]"
+               placeholder="new tags seperated by commas">
+
+        <button class="btn btn-default btn-xs btn-primary">Add tags</button>
+      </form>
+  <% end %>
+</div>
+
+<script>
+$(document).ready(function () {
+  var that = this;
+
+  var $tagEl = function(tagging) {
+    return $('<li id='+tagging.id+'><div class="delete-tag"><button class="btn btn-xs btn-default delete-tag-button" id="'+tagging.id+'">x</button></div><a href="/tags/'+tagging.id+'">'+tagging.name+'</a></li>');
+  };
+
+  $(".tag-list").on("click", ".delete-tag-button", function (event) {
+    event.preventDefault();
+    var $currentTarget = $(event.currentTarget);
+    var tagId = $currentTarget.attr("id");
+    $.ajax({
+      dataType: 'json',
+      url: "/api/taggings/"+tagId,
+      type: "DELETE",
+      success: function (data) {
+        $("li#"+tagId).remove();
+      }
+    })
+  });
+
+  $("#tag-form").on("submit", function (event) {
+    event.preventDefault();
+    var $currentTarget = $(event.currentTarget);
+    var photoId = $currentTarget.find("#tagging_photo_id").val();
+    var tags = $currentTarget.find("#tagging_tags").val();
+    $.ajax({
+      dataType: 'json',
+      data: {
+        tagging: {
+          photo_id: photoId,
+          tags: tags
+        }
+      },
+      url: "/api/taggings",
+      type: "POST",
+      success: function (data) {
+        data.forEach(function (datum) {
+          $.ajax({
+            dataType: 'json',
+            url: "/api/tags/"+datum.tag_id,
+            type: "GET",
+            success: function (newTag) {
+              $(".tag-list").append($tagEl(newTag));
+            }
+          });
+        })
+        $currentTarget.find("#tagging_tags").val("");
+      }
+    })
+  });
+});
+</script>

@@ -1,0 +1,11 @@
+<h1><%= @message.subject %></h1>
+<div class="message well col-md-8">
+<strong>from <%= link_to @author.email, user_url(@author) %></strong>
+<div class="message-body">
+  <p><%= @message.body %></p>
+</div>
+
+<%= link_to "Reply", new_user_message_url(user_id: @author.id, re: "Re: #{@message.subject}"), method: :get, class: "btn btn-default btn-primary btn-xs" %>
+<%= link_to "Back to Inbox", messages_url, method: :get, class: "btn btn-default btn-xs" %>
+<%= link_to "Delete", message_url(@message), method: :delete, class: "btn btn-default btn-xs btn-danger" %>
+</div>

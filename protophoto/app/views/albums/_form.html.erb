@@ -1,0 +1,53 @@
+<% if album.persisted? %>
+  <% target_url = album_url(album) %>
+  <% target_verb = "PATCH" %>
+  <% button_text = "Save Changes" %>
+<% else %>
+  <% target_url = albums_url %>
+  <% target_verb = "POST" %>
+  <% button_text = "Create Album" %>
+<% end %>
+
+<form action="<%= target_url %>" method="POST">
+  <input type="hidden" name="_method"
+         value="<%= target_verb %>">
+  <input type="hidden" name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <div class="form-group">
+    <label for="album_title">Title:</label>
+    <input type="text" id="album_title" name="album[title]"
+           value="<%= album.title %>"
+           class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="album_description">Description:</label>
+    <textarea id="album_description" name="album[description]"
+              class="form-control"><%= album.description %></textarea>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-success"><%= button_text %></button>
+  </div>
+
+  <div class="form-group">
+    <div class="album-photos well group">
+      <% photos.each do |photo| %>
+        <figure class="album-candidate">
+          <input type="hidden" id="album_photo_ids" 
+                 name="album[photo_ids][]" value="">
+          <input type="checkbox"
+                 id="album_photo_ids"
+                 name="album[photo_ids][]"
+                 value="<%= photo.id %>"
+                 <% if album.photo_ids.include?(photo.id) %>
+                   checked
+                 <% end %>>
+
+          <figcaption><%= photo.title %></figcaption>
+          <%= image_tag photo.image.url(:thumb), class: "img-thumbnail" %>
+        </figure>
+      <% end %>
+    </div>
+</form>

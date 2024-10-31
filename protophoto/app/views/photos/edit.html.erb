@@ -1,0 +1,41 @@
+<div class="well col-md-8 col-md-offset-2">
+  <div class="row">
+    <div class="col-md-6">
+      <figure><%= image_tag @photo.image.url(:large), class: "img-thumbnail" %></figure>
+        <%= link_to "Back to Photo", photo_url(@photo), method: :get, class: "btn btn-primary btn-xs" %>
+        <%= link_to "Delete", photo_url(@photo), method: :delete, class: "btn btn-danger btn-xs" %>
+    </div>
+    <div class="col-md-6">
+      <form action="<%= photo_url(@photo) %>" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="authenticity_token"
+               value="<%= form_authenticity_token %>">
+        
+        <div class="form-group">
+          <label for="photo_title">Title:</label><br>
+          <input type="text" id="photo_title" name="photo[title]"
+                 value="<%= @photo.title %>"
+                 class="form-control">
+        </div>
+
+
+        <div class="form-group">
+          <label for="photo_description">Description:</label><br>
+          <textarea id="photo_description" name="photo[description]"
+                    rows="5"
+                    class="form-control"><%= @photo.description %></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="photo_location">Location:</label><br>
+          <input type="text" id="photo_location" name="photo[location]"
+                 placeholder="EXIF takes precedence"
+                 value="<%= @photo.location %>"
+                 class="form-control">
+        </div>
+
+        <button class="btn btn-success">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>

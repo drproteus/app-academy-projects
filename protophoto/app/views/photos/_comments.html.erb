@@ -1,0 +1,13 @@
+<h2>Comments</h2>
+<div class="row">
+  <% if logged_in? %>
+      <%= render "comments/new", commentable_id: photo.id, commentable_type: photo.class.to_s %>
+  <% end %>
+  <div class="comments">
+  <% photo.comments.order("created_at desc").each do |comment| %>
+    <div>
+      <%= render "comments/show", comment: comment %>
+    </div>
+  <% end %>
+  </div>
+</div>

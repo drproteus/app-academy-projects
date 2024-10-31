@@ -1,0 +1,20 @@
+<h2><%= @album.title %></h2>
+<div>
+by <strong><%= link_to @album.owner.email, user_url(@album.owner) %></strong>
+</div>
+
+<% if @album.photos.empty? %>
+  so lonely jeez please add some photos.. <a href="<%= edit_album_url(@album) %>">quick!</a>
+<% end %>
+
+<%= paginate @photos %>
+<%= render "photos/list", photos: @photos %>
+<%= paginate @photos %>
+
+<div class="album-description"><%= markdown(@album.description) %></div>
+
+<% if current_user == @album.owner %>
+  <br>
+  <%= link_to "Edit Album", edit_album_url(@album), method: :get, class: "btn btn-default btn-xs btn-warning" %>
+  <%= link_to "Delete Album", album_url(@album), method: :delete, class: "btn btn-default btn-xs btn-danger" %>
+<% end %>

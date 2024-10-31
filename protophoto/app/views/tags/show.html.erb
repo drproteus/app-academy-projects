@@ -1,0 +1,8 @@
+<h1>Photos tagged with '<%= @tag.name %>'</h1>
+<%= link_to "all tags", tags_url %><br>
+
+<%= paginate @photos %>
+
+<%= render "photos/list", photos: @photos %>
+
+<%= paginate @photos %>

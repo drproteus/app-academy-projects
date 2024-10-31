@@ -1,0 +1,11 @@
+<form action="<%= taggings_url %>" method="POST">
+  <input type="hidden" name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="tagging[photo_id]" value="<%= @photo.id %>">
+
+  <input type="text" name="tagging[tags]"
+         placeholder="new tags seperated by commas">
+
+  <button class="btn btn-default btn-xs btn-primary">Add tags</button>
+</form>

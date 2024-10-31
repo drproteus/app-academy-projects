@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/chat.js"></script>
+    <script src="/javascripts/chat_ui.js"></script>
+    <title>babbl</title>
+    <style>
+    body {
+      font-family: sans-serif;
+    }
+    .container {
+      width: 820px;
+      margin: auto;
+    }
+    .group {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .messages {
+      width: 600px;
+      height: 400px;
+      float: left;
+      overflow: auto;
+      border: 1px solid #ddd;
+      margin-right: 10px;
+    }
+    .message {
+      padding: 6px;
+    }
+    .connected-users {
+      width: 200px;
+      height: 400px;
+      float: left;
+      overflow: auto;
+      border: 1px solid #eee;
+    }
+    .messages .message:nth-child(even) {
+      background: #eee;
+    }
+    ul {
+      list-style: none;
+    }
+    .messages .message.server {
+      background: lightyellow;
+    }
+    .connected-users > h3 {
+      text-align: center;
+    }
+
+    #message-text {
+      width: 400px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+    <h1>babbl</h1>
+      <div class="group">
+        <section class="messages"></section>
+        <section class="connected-users"></section>
+      </div>
+
+      <div class="group">
+        <form id="send-message">
+          <label for="message-text"></label>
+          <input type="text" id="message-text">
+          <button>Send</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

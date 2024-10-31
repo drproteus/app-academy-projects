@@ -1,0 +1,8 @@
+<div class="row">
+  <% notices.each do |message| %>
+    <div class="alert alert-dismissable col-md-6 col-md-offset-3 <%= klass %>">
+     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+    <%= message %></div>
+  <% end %>
+</div>
+

@@ -1,0 +1,17 @@
+<form role="form" id="add-to-album" action="<%= album_memberships_url %>" method="POST">
+  <input type="hidden" name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="album_membership[photo_id]"
+         value="<%= photo.id %>">
+
+  <div class="form-group">
+    <label>Add to Album:</label>
+    <select name="album_membership[album_id]">
+      <% current_user.albums.each do |album| %>
+        <option value="<%= album.id %>"><%= album.title %></option>
+      <% end %>
+    </select>
+    <button class="btn btn-xs btn-primary">Add</button>
+  </div>
+</form>

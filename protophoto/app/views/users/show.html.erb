@@ -1,0 +1,61 @@
+<header>
+  <h2><%= image_tag @user.avatar.url(:icon), class: "img-thumbnail" %>
+  <%= @user.email %>
+  </h2>
+  <p class="member-since" data-member-since="<%= @user.created_at %>">member since <%= @user.created_at %></p>
+  <% if current_user && current_user != @user %>
+    <a href="<%= new_user_message_url(user_id: @user.id) %>" class="btn btn-default"><span class="glyphicon glyphicon-envelope">
+    </span> Send Message</a>
+  <% end %>
+  <% if current_user && current_user == @user %>
+    <a href="<%= edit_user_url(current_user) %>" class="btn btn-default">Edit Profile</a>
+  <% end %>
+</header>
+
+<section class="user-albums">
+  <h2>Albums</h2>
+  <ul class="album-list group">
+    <% @albums.each do |album| %>
+      <%= render "albums/thumb", album: album %>
+    <% end %>
+  </ul>
+  <%= paginate @albums, param_name: "album_page" %>
+</section>
+
+<section class="user-photos">
+  <h2>Photos</h2>
+  <%= paginate @photos, param_name: "photo_page" %>
+  <%= render "photos/list", photos: @photos %>
+  <%= paginate @photos, param_name: "photo_page"%>
+</section>
+
+<section class="user-wall row">
+  <div class="col-md-6">
+    <h2>Wall</h2>
+    <% if logged_in? %>
+      <%= render "comments/new", commentable_id: @user.id, commentable_type: @user.class.to_s %>
+    <% end %>
+    <div class="comments">
+    <% @user.comments.order("created_at desc").each do |comment| %>
+      <%= render "comments/show", comment: comment %>
+    <% end %>
+    </div>
+  </div>
+  <% if @user.bio.present? %>
+    <div class="col-md-6">
+      <h2>About</h2>
+      <div class="well">
+      <%= markdown(@user.bio) %>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+<script>
+$(document).ready(function () {
+  $(".member-since").each(function (index, element) {
+    var memberSince = moment($(element).data("member-since")).format('ll');
+    $(element).html("protofied "+memberSince);
+  });
+});
+</script>

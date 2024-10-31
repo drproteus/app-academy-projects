@@ -1,0 +1,8 @@
+<% @options = { favorites: "plz" } %>
+
+<h1>Favorite Photos</h1>
+<%= paginate @photos %>
+
+<%= render "photos/list", photos: @photos %>
+
+<%= paginate @photos %>

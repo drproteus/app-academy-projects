@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <h1 class="logo">proto.photo</h1>
+  
+  <div>
+    <%= link_to "Sign In", new_session_url, class: "btn btn-primary" %>
+    <%= link_to "Sign Up", new_user_url, class: "btn btn-success" %>
+
+    <form role="form" class="demo-login" action="<%= session_index_url %>" method="POST">
+      <input type="hidden" name="authenticity_token"
+             value="<%= form_authenticity_token %>">
+      <input type="hidden" name="user[email]"
+             value="demo@de.mo">
+      <button class="btn btn-default btn-warning">Demo</button>
+    </form>
+  </div>
+</div>

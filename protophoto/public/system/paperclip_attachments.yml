@@ -1,0 +1,11 @@
+---
+:Photo:
+  :image:
+  - :large
+  - :medium
+  - :thumb
+:User:
+  :avatar:
+  - :icon
+  - :icon_small
+  - :medium

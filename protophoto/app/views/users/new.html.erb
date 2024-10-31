@@ -1,0 +1,50 @@
+<div class="well col-md-8 col-md-offset-2">
+  <h1>SIGN UP</h1>
+
+  <form action="<%= users_url %>" enctype="multipart/form-data" method="POST">
+    <input type="hidden" 
+           name="authenticity_token"
+           value="<%= form_authenticity_token %>">
+           
+    <div class="form-group">
+      <label for="user_email">Email:</label>
+      <input type="text" id="user_email" name="user[email]"
+             class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="user_password">Password:</label>
+      <input type="password" id="user_password" name="user[password]"
+             class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="user_password_conf">Confirm Password:</label>
+      <input type="password" id="user_password_confirmation" 
+                             name="user[password_confirmation]"
+                             class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="user_avatar">Avatar:</label>
+      <input type="file" id="user_avatar" name="user[avatar]"
+             class="form-control">
+    </div>
+    <div class="form-group"
+      <label for="user_url">Or from URL:</label>
+      <input type="text" id="user_url" name="user[url]"
+             class="form-control"
+             placeholder="will override file if chosen">
+    </div>
+
+    <div class="form-group">
+      <label for="user_bio">Bio:</label>
+      <textarea id="user_bio" name="user[bio]"
+                class="form-control"
+                rows="10"
+                placeholder="tell us about yourself, or don't. that's also cool."></textarea>
+    </div>
+
+    <button class="btn btn-default btn-success">SUBMIT</button>
+  </form>
+</div>

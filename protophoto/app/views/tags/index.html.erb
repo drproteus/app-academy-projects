@@ -1,0 +1,9 @@
+<h1>All Tags</h1>
+<%= paginate @tags %>
+<ul class="tags">
+<% @tags.each do |tag| %>
+  <% next if tag.taggings.empty? %>
+  <li><%= link_to tag.name, tag_url(tag) %></li>
+<% end %>
+</ul>
+<%= paginate @tags %>

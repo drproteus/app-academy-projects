@@ -1,0 +1,44 @@
+<div class="well col-md-8 col-md-offset-2">
+  <h1>Upload!</h1>
+
+  <form role="form" action="<%= photos_url %>" enctype="multipart/form-data" method="POST">
+    <input type="hidden" 
+           name="authenticity_token"
+           value="<%= form_authenticity_token %>">
+
+    <div class="form-group">
+      <label for="photo_image">Image:</label><br>
+      <input type="file" id="photo_image" name="photo[image]" class="btn"
+             class="form-control">
+    </div>
+
+    <div class="form-group">    
+      <label for="photo_title">Title:</label><br>
+      <input type="text" id="photo_title" name="photo[title]"
+             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="photo_description">Description:</label><br>
+      <textarea id="photo_description" name="photo[description]"
+                rows="5"
+                class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="photo_location">Location:</label><br>
+      <input type="text" id="photo_location" name="photo[location]"
+             placeholder="EXIF takes precedence"
+             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="photo_tags">Tags:</label><br>
+      <input type="text" id="photo_tags" name="photo[tags]" placeholder="seperated by commas"
+             class="form-control">
+    </div>
+
+
+    <button class="btn btn-default btn-success">SUBMIT</button>
+  </form>
+</div>

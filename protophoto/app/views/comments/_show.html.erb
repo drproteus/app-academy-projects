@@ -1,0 +1,17 @@
+<div class="well comment" id="<%= comment.id %>">
+  <%= image_tag comment.author.avatar.url(:icon_small), class: "img-circle" %>
+  <strong><%= link_to comment.author.email, user_url(comment.author) %></strong>
+  <span class="posted" data-created-at="<%= comment.created_at %>">posted <%= comment.created_at %></span>
+  <p class="comment-body"><%= comment.content %></p>
+  <% if comment.author == current_user %>
+    <%= button_to "Remove Comment", comment_url(comment), method: :delete, class: "btn btn-default btn-xs btn-danger delete-comment", id: comment.id %>
+  <% end %>
+</div>
+<script>
+$(document).ready(function () {
+  $(".posted").each(function (index, element) {
+    var postedAt = moment($(element).data("created-at")).fromNow();
+    $(element).html("posted "+postedAt);
+  });
+});
+</script>

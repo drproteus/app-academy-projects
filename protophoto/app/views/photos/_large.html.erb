@@ -1,0 +1,8 @@
+<div class="large-photo col-md-10 col-md-offset-1">
+  <div class="group">
+  <%= link_to "Tile", photo_url(@photo) + '/tile', id: "tile", class: "btn btn-default btn-xs" %>
+  </div>
+  <a href="<%= @photo.image.url(:original) %>"><%= image_tag @photo.image.url(:large), class: "img-responsive img-thumbnail" %></a>
+  <h3 class="photo-title"><%= @photo.title %></h3>
+  <div class="photo-description col-md-8 col-md-offset-2"><%= markdown(@photo.description) %></div>
+</div>

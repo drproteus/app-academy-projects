@@ -1,0 +1,22 @@
+<% unless @photo.info.empty? %>
+  <div class="info well">
+    <% if photo.latitude && photo.longitude %>
+      <div id='map' class='dark'></div>
+      <script type='text/javascript'>
+        $(document).ready(function () {
+          L.mapbox.accessToken = 'pk.eyJ1IjoiZHJwcm90ZXVzIiwiYSI6Ik5vV2c4Z0EifQ.KJSI1k4FtbmjSncp-Wyuag'
+          var map = L.mapbox.map('map', 'drproteus.k3f52gph')
+                     .setView([<%= photo.latitude %>, <%= photo.longitude %>], 10);
+          L.marker([<%= photo.latitude %>, <%= photo.longitude %>], {
+              icon: L.mapbox.marker.icon({'marker-symbol': 'cafe'})
+          }).addTo(map);
+        });
+      </script>
+    <% end %>
+    <div>
+      <% @photo.info.each do |field, value| %>
+        <p><strong><%= field %></strong>: <%= value %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,56 @@
+<div class="well col-md-8 col-md-offset-2">
+  <h1>RE-INVENT YOURSELF</h1>
+  <h2><%= image_tag current_user.avatar.url(:icon), class: "img-thumbnail" %>
+    <%= current_user.email %>
+  </h2>
+  <form action="<%= user_url(current_user) %>" enctype="multipart/form-data" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" 
+           name="authenticity_token"
+           value="<%= form_authenticity_token %>">
+
+    <div class="form-group">
+      <label for="user_password">New Password:</label>
+      <input type="password" id="user_password" name="user[password]"
+             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="user_password_conf">Confirm New Password:</label>
+      <input type="password" id="user_password_confirmation" 
+                             name="user[password_confirmation]"
+                             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="user_bio">Bio:</label>
+      <textarea id="user_bio" name="user[bio]"
+                class="form-control"
+                rows="10"
+                placeholder="tell us about yourself, or don't. that's also cool."><%= current_user.bio %></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="user_avatar">New Avatar:</label>
+      <input type="file" id="user_avatar" name="user[avatar]"
+             class="form-control">
+    </div>
+    <div class="form-group"
+      <label for="user_url">Or from URL:</label>
+      <input type="text" id="user_url" name="user[url]"
+             class="form-control"
+             placeholder="will override file if chosen">
+    </div>
+
+    <input type="submit" class="btn btn-default btn-success">
+
+    <a href="<%= user_url(current_user) %>" 
+       class="btn btn-default btn-primary">Back to Profile</a>
+  </form>
+
+  <%= button_to "Delete Self", user_url(current_user), 
+      class: "btn btn-xs btn-danger", 
+      id: "delete-self",
+      method: :delete,
+      data: { confirm: "This will delete all uploaded photos and cannot be undone. Are you sure?" } %>
+</div>

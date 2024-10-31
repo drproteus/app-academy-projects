@@ -1,0 +1,12 @@
+<% if @album %>
+  <% url = photo_url(photo, album_id: @album.id) %>
+<% elsif @user %>
+  <% url = photo_url(photo, user_id: @user.id) %>
+<% else %>
+  <% url = photo_url(photo, @options) %>
+<% end %>
+
+<div class="col-md-4 photo-thumb">
+  <a href="<%= url %>"><%= image_tag photo.image.url(:medium), class: "img-responsive img-thumbnail" %></a>
+  <p class="photo-caption"><%= link_to photo.title, photo_url(photo) %></p>
+</div>

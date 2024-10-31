@@ -1,0 +1,48 @@
+<h4>proto.worldwide</h4>
+<!-- <div id="big-map"></div> -->
+
+<script>
+  $(document).ready(function () {
+    $("main").remove();
+    $("header").append('<div id="big-map"></div>');
+    $("#big-map").css("height", (window.innerHeight - 100)+"px");
+    $("body").css("overflow", "hidden");
+
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZHJwcm90ZXVzIiwiYSI6Ik5vV2c4Z0EifQ.KJSI1k4FtbmjSncp-Wyuag'
+    var map = L.mapbox.map('big-map', 'drproteus.k3f52gph')
+                   .setView([39.12367, -76.81229], 4);
+
+    var myLayer = L.mapbox.featureLayer().addTo(map);
+    myLayer.on('layeradd', function(e) {
+      var marker = e.layer,
+          feature = marker.feature;
+      console.log('layer add');
+      console.log(feature);
+      marker.setIcon(L.icon(feature.properties.icon));
+    });
+
+    myLayer.on('click', function(e) {
+      window.open(e.layer.feature.properties.url);
+    });
+
+    myLayer.on('mouseover', function(e) {
+      e.layer.openPopup();
+    });
+    myLayer.on('mouseout', function(e) {
+        e.layer.closePopup();
+    });
+
+    $.ajax({
+      dataType: 'json',
+      url: "/api/map",
+      type: "GET",
+      success: function (geojson) {
+        myLayer.setGeoJSON(geojson);
+      },
+    })
+
+    $(window).resize(function () {
+      $("#big-map").css("height", (window.innerHeight - 100)+"px");
+    });
+  });
+</script>

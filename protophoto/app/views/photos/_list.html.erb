@@ -1,0 +1,8 @@
+<div class="photo-list">
+  <% photos.each_with_index do |photo, i| %>
+    <% if i % 3 == 0 && i > 0 %></div><% end %>
+    <% if i % 3 == 0 %><div class="row"><% end %>
+    <%= render "photos/medium", photo: photo %>
+    <% if i == photos.count(:all) - 1 %></div><% end %>
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+module AlbumMembershipsHelper
+end

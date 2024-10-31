@@ -1,0 +1,40 @@
+<% if !!(knext && prev) %>
+  <% next_url = photo_url(knext, @url_options) %>
+  <% prev_url = photo_url(prev, @url_options) %>
+<% else %>
+  <% next_url = prev_url = nil %>
+<% end %>
+
+<div class="photo-header group">
+  <div class="photo-path"><strong>
+    <% if @album %>
+      <%= link_to @album.owner.email, user_url(@album.owner) %>'s Albums / <%= link_to @album.title, album_url(@album) %>
+    <% elsif @user %>
+      <%= link_to @user.email, user_url(@user) %>'s Photos
+    <% elsif @favorites %>
+      <a href="/favorites">Favorites</a>
+    <% else %>
+      <%= link_to "All Photos", photos_url %> / <%= link_to @photo.owner.email, user_url(@photo.owner) %>
+    <% end %>
+  </strong> / <%= @photo.title %></div>
+
+  <div class="photo-nav">
+    <% if next_url && prev_url %>
+      <%= link_to "prev", prev_url %>
+      <span><%= @pos %> of <%= @count %></span>
+      <%= link_to "next", next_url %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+$(document).ready(function () {
+  $(document).keydown(function (event) {
+    if (event.keyCode === 37) {
+      window.location.href = "<%= prev_url %>";
+    } else if (event.keyCode === 39) {
+      window.location.href = "<%= next_url %>";
+    }
+  });
+});
+</script>

@@ -1,0 +1,46 @@
+<h1>Search!</h1>
+<div class="row">
+  <form role="form" action="<%= search_index_url %>" class="col-md-8">
+    <div class="form-group">
+      <input type="text" value="<%= @query %>" name="query" 
+             placeholder="search yo!"
+             class="form-control">
+    </div>
+
+    <button class="btn btn-primary">Find Stuff</button>
+  </form>
+</div>
+
+<% unless (@photos.nil? && @tagged_photos.nil?) || (@photos.empty? && @tagged_photos.empty?) %>
+  <h2>Results in Photos</h2>
+  <% unless @photos.nil? || @photos.empty? %>
+    <h3>matching '<%= @query %>'</h3>
+    <%= render "photos/list", photos: @photos %>
+  <% end %>
+
+  <% unless @tagged_photos.nil? || @tagged_photos.empty? %>
+    <h3>tagged '<%= @query %>'</h3>
+    <%= render "photos/list", photos: @tagged_photos %>
+  <% end %>
+<% end %>
+
+<% unless @albums.nil? || @albums.empty? %>
+  <h2>Results in Albums</h2>
+  <ul class="album-list group">
+    <% @albums.each do |album| %>
+      <%= render "albums/thumb", album: album %>
+    <% end %>
+  </ul>
+<% end %>
+
+<% unless @users.nil? || @users.empty? %>
+  <h2>Results in Users</h2>
+  <% @users.each do |user| %>
+    <div class="well col-md-2 user-index-figure">
+      <a href="<%= user_url(user) %>"><figure>
+      <%= image_tag user.avatar.url(:icon), class: "img-thumbnail" %>
+      <figcaption><%= user.email %></figcaption>
+      </figure></a><p>member since <%= user.created_at %></p>
+    </div>
+  <% end %>
+<% end %>

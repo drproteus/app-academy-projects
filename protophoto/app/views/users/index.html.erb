@@ -1,0 +1,19 @@
+<h1>ProtoPeeps</h1>
+<% @users.each do |user| %>
+  <div class="well col-md-2 user-index-figure">
+    <a href="<%= user_url(user) %>"><figure>
+    <%= image_tag user.avatar.url(:icon), class: "img-thumbnail" %>
+    <figcaption><%= user.email %></figcaption>
+    </figure></a>
+    <p>protofied on</p>
+    <p class="member-since" data-member-since="<%= user.created_at %>"><%= user.created_at %></p>
+  </div>
+<% end %>
+<script>
+$(document).ready(function () {
+  $(".member-since").each(function (index, element) {
+    var memberSince = moment($(element).data("member-since")).format('ll');
+    $(element).html(memberSince);
+  });
+});
+</script>

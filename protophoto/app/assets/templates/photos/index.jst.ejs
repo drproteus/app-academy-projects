@@ -1,0 +1,45 @@
+<h1><%= title %></h1>
+
+<div class="photo-list">
+  <% photos.forEach(function (photo, index, photos) { %>
+    <% if (index % 3 === 0 && index > 0) { %></div><% }; %>
+    <% if (index % 3 === 0) { %><div class="row"><% }; %>
+
+    <div class="col-md-4 photo-thumb">
+      <a href=<%= "/photos/" + photo.escape("id") %>>
+      <img src="<%= photo.get("url") %>" class="img-responsive img-thumbnail">
+      </a><p class="photo-caption">
+        <a href=<%= "/#/photos/" + photo.escape("id") %>>
+      <%= photo.escape("title") %>
+      </a></p>
+    </div>
+
+    <% if (index === photos.length - 1) { %></div><% }; %>
+  <% }) %>
+</div>
+
+<a href="#" class="btn btn-sm btn-primary" id="top">Top</a>
+
+<style>
+#next {
+  float: right;
+}
+#top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+</style>
+<script>
+$(document).ready(function () {
+  $(window).scroll(function () {
+    var height = $(window).scrollTop();
+    if (height < 100) {
+      $("#top").css("display", "none");
+    } else {
+      $("#top").css("display", "block");
+    }
+  });
+});
+</script>
